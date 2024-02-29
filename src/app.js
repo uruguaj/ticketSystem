@@ -4,27 +4,24 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import helmet from "helmet";
 
-const app: Application = express();
+const app = express();
 
 // Apply middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors<Request>());
+app.use(cors());
 app.use(helmet());
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   const { hostname, method, path, ip, protocol } = req;
   res
     .cookie("working", true)
     .json(`${hostname}://${method} ${path} ip: ${ip} protocol: ${protocol}`);
 });
-app.get("/c", (req: Request, res: Response) => {
-  res.json(true);
-});
 
 // Error handling middleware (optional)
-app.use((err: Error, req: any, res: any, next: any) => {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
 });
