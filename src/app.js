@@ -11,9 +11,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOptions = {
-  methods: ["GET"],
+  origin: "*",
+  methods: "GET,POST",
+  allowedHeaders: "Content-Type,Authorization",
 };
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(helmet());
 
 app.get("/", (req, res) => {
