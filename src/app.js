@@ -1,8 +1,8 @@
-import express from "express";
-import bodyParser from "body-parser";
-import cookieParser from "cookie-parser";
-import cors from "cors";
-import helmet from "helmet";
+const express = require("express");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const helmet = require("helmet");
 
 const app = express();
 
@@ -31,5 +31,3 @@ const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
-
-export default app;
