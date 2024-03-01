@@ -10,7 +10,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
+const corsOptions = {
+  methods: ["GET"],
+};
+app.use(cors(corsOptions));
 app.use(helmet());
 
 app.get("/", (req, res) => {
