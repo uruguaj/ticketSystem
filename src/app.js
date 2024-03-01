@@ -20,10 +20,14 @@ app.use(helmet());
 
 app.get("/", (req, res) => {
   const { hostname, method } = req;
-  res
-    .cookie("working", true)
-    .cookie("request", method)
-    .json(`Hi, thanks for visiting ${hostname}`);
+  if (hostname != "api.uruguaj.com") {
+    return res.status(400).json({ error: "Invalid hostname" });
+  } else {
+    res
+      .cookie("working", true)
+      .cookie("request", method)
+      .json(`Hi, thanks for visiting ${hostname}`);
+  }
 });
 
 // Error handling middleware (optional)
