@@ -19,10 +19,11 @@ app.use(cors());
 app.use(helmet());
 
 app.get("/", (req, res) => {
-  const { hostname, method, path, ip, protocol } = req;
+  const { hostname, method } = req;
   res
     .cookie("working", true)
-    .json(`${hostname}://${method} ${path} ip: ${ip} protocol: ${protocol}`);
+    .cookie("request", method)
+    .json(`Hi, thanks for visiting ${hostname}`);
 });
 
 // Error handling middleware (optional)
